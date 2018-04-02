@@ -3,7 +3,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'testsite.settings')
 
 import django
 django.setup()
-from ajinyangie.models import dog_types
+from ajinyangie.models import *
 
 import requests
 from bs4 import BeautifulSoup

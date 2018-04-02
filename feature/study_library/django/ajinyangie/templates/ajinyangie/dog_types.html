@@ -1,16 +1,32 @@
 <html>
 <head>
-</head>>
-<body>
-<ul>
-{% for dog_type in dog_types %}
-    <li> {{ dog_type.name }} </li>
-    <li> {{ dog_type.group }} </li>
-    <li> {{ dog_type.height }} </li>
-    <li> {{ dog_type.weight }} </li>
-    <li> {{ dog_type.life_span }} </li>
+    <style>
+        table {
+            text-align:center;
+        }
+        td {
+            width:500px;
+        }
+    </style>
+</head>
+<table>
+<tr>
+<th>이름</th>
+<th>품종</th>
+<th>높이</th>
+<th>무게</th>
+<th>생애</th>
+</tr>
 
+{% for dog in dogs %}
+<tr>
+<td> {{ dog.name }} </td>
+<td> {{ dog.group }} </td>
+<td style="width:800px"> {{ dog.height }} </td>
+<td> {{ dog.weight }} </td>
+<td> {{ dog.life_span }} </td>
+</tr>
 {% endfor %}
-</ul>
-</body>>
+</table>
+</body>
 </html>
