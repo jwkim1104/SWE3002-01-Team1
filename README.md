@@ -1,5 +1,5 @@
-// SWE3002-01-Team1
-/*
+SWE3002-01-Team1
+
  디렉토리 구조는 다음과 같습니다
  feature
  |________study_design_specification
@@ -17,4 +17,4 @@ study_* : 시스템 구현을 위한 study자료를 의미합니다
 *_design_specification : 시스템 구현을 위한 설계명세서 자료입니다
  
  
- */
+
