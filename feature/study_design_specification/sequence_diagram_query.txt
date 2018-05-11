@@ -1,0 +1,56 @@
+#title ShowingDeliveryHistory System
+#User->+Feedbap : reqDeliveryStatus() with valid key
+#Feedbap -> ShowingDeliveryHistory : reqPurchaseRow() with key
+#ShowingDeliveryHistory -> PurchaseDB : reqPurchaseRow()
+#PurchaseDB -->> ShowingDeliveryHistory  : resPurchaseRow()
+#ShowingDeliveryHistory -> ShowingDeliveryHistory : sortByDeliveryStatus()
+#ShowingDeliveryHistory -->> Feedbap : resPurchaseInformation
+#loop 
+#alt showAllHistory
+#Feedbap -> -User : showProductStatus
+#alt if user requested specified Status
+#User->+Feedbap : reqSpecifiedDelivery()
+#Feedbap -->> -User : showSpecifiedDeliveryStatus()
+
+
+#title ShowingSpecifiedDelivery System
+#User->+Feedbap : reqDeliveryStatus() with valid key
+#Feedbap -> ShowingSpecifiedDelivery : reqDeliveryStatus() with api key
+#ShowingSpecifiedDelivery -> SweetTracker API : send API
+#alt API error
+#SweetTracker API --> ShowingSpecifiedDelivery : return Error
+#ShowingSpecifiedDelivery --> Feedbap : return API Error
+#Feedbap --> -User : showAPIError()
+#else API no error
+#SweetTracker API --> ShowingSpecifiedDelivery : send API dataset
+#ShowingSpecifiedDelivery -> ShowingSpecifiedDelivery : parse dataset()
+#ShowingSpecifiedDelivery --> User : showSpecifiedDelivery()
+
+#title ChatbotJSON System
+#User -> Kakaotalk Chatbot : reqChatbotOpen
+#Kakaotalk Chatbot -> ChatbotJson : binding server
+#alt no server error
+#ChatbotJson --> +Kakaotalk Chatbot : return OK message
+#Kakaotalk Chatbot  --> User : Open Chatbot service
+#loop waiting for user req
+#User -> Kakaotalk Chatbot  : question
+#Kakaotalk Chatbot  --> -User : answer
+
+    
+title Analysis System
+Analysis System -> +Kakaotalk pf-page : validate Manager ID
+alt validate success
+Kakaotalk pf-page --> Analysis System : open manager page
+Analysis System -> Kakaotalk pf-page : reqExcelStatFile
+Kakaotalk pf-page --> -Analysis System : sendExcelStatFile
+end
+Analysis System ->Analysis System : parseData()
+Analysis System -> CRM DB : reqQuery()
+CRM DB -->> Analysis System : resWithDataset()
+Analysis System -> Analysis System  : adjustOriginData()
+Analysis System -> CRM DB : reqUpdateQuery()
+CRM DB --> Analysis System : resWithTransactionMessage()
+
+
+
+
