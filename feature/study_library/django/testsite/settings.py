@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ajinyangie',
     'kakaotalk',
+    'feedbap',
 ]
 
 MIDDLEWARE = [
