@@ -23,7 +23,7 @@ class CRM(models.Model):
     questTypeFreq = models.IntegerField(null=True)
     emailNeed = models.CharField(max_length=1, default='F')
 
-# User -> mysql변경시 ...
+# CRM -> mysql변경시 ...
 # questNum : (Value Name) questNum -> id로 변경되었습니다(기본 django default제공)
 # serialNum : (Field) INTEGER -> VARCHAR(30)
 # emailNeed : (Field) BIT -> VARCHAR(1), (Default) 0 -> 'F'
@@ -37,6 +37,9 @@ class Process(models.Model):
     placeName = models.CharField(max_length=30)
 
 
+# Process -> mysql변경시 ...
+
+
 class Breed(models.Model):
     breedName = models.CharField(max_length=30, primary_key=True)
     maxWeight = models.FloatField(null=False)
@@ -45,9 +48,39 @@ class Breed(models.Model):
     size = models.FloatField(null=False)
 
 
+# Breed -> mysql변경시 ...
 
-# class Pet(models.Model):
-#     petId = models.IntegerField(primary_key=True)
-#     serialNum = models.ForeignKey(User, on_delete=models.CASCADE)
-#     petName = models.CharField(max_length=30, null=False)
-#     breedName = models.CharField(max_length=30)
+
+class Pet(models.Model):
+    petId = models.IntegerField(primary_key=True)
+    serialNum = models.ForeignKey(User, on_delete=models.CASCADE)
+    petName = models.CharField(max_length=30, null=False)
+    breedName = models.ForeignKey(Breed, on_delete=models.CASCADE)
+    age = models.IntegerField(default=0, null=False)
+    gender = models.CharField(max_length=1, null=False)
+    weight = models.FloatField(null=False)
+    neutralization = models.CharField(max_length=1, default='F')
+    neutralizationDate = models.DateField(auto_now=False, null=True)
+    obesityDegree = models.IntegerField(null=False)
+    activityDegree = models.IntegerField(null=False)
+    allergy = models.CharField(max_length=30, null=True)
+    taste = models.CharField(max_length=30, null=True)
+    healthIssue = models.CharField(max_length=30, null=True)
+
+
+# Pet -> mysql변경시 ...
+# serialNum : (Field) INTEGER -> VARCHAR(30)
+# gender : (Field) BIT -> VARCHAR(1), (Default) 0 -> 'F'
+
+
+class Product(models.Model):
+    productId = models.IntegerField(primary_key=True)
+    nutrition = models.CharField(max_length=30, null=False)
+    petId = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    calorie = models.FloatField(null=False)
+    ingredient = models.CharField(max_length=100)
+    mixportion = models.FloatField(null=False)
+    price = models.FloatField(default=0.)
+
+
+# Product -> mysql변경시 ...
