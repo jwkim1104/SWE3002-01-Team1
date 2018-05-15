@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ajinyangie/', include('ajinyangie.urls')),
     path('kakaotalk/', include('kakaotalk.urls')),
-
+    path('feedbap/', include('feedbap.urls')),
 ]
