@@ -84,3 +84,31 @@ class Product(models.Model):
 
 
 # Product -> mysql변경시 ...
+
+
+class Order(models.Model):
+    orderId = models.IntegerField(primary_key=True)
+    serialNum = models.ForeignKey(User, on_delete=models.CASCADE)
+    productId = models.ForeignKey(Product, on_delete=models.CASCADE)
+    orderDate = models.DateField(auto_now=True)
+    periodOption = models.CharField(max_length=1, default='F')
+    period = models.CharField(max_length=30, null=True)
+    quantity = models.FloatField(null=False)
+    totalPrice = models.FloatField(null=False, default=0.)
+
+
+# Order -> mysql변경시 ...
+# serialNum : (Field) INTEGER -> VARCHAR(30)
+# periodOption : (Field) BIT -> VARCHAR(1), (Default) 0 -> 'F'
+
+
+class Delivery(models.Model):
+    deliveryNumber = models.IntegerField(primary_key=True)
+    deliveryStatus = models.CharField(max_length=30, null=False)
+    orderId = models.ForeignKey(Order, on_delete=models.CASCADE)
+    expectedDeliveryDate = models.DateField(auto_now=False, null=True)
+
+
+# Delivery -> mysql변경시 ...
+# expectedDeliveryDate : (Default) now+3 -> 0
+# orderDate(delete)
