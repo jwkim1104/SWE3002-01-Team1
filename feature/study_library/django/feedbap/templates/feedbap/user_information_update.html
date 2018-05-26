@@ -1,0 +1,47 @@
+<html>
+<head>
+    <style>
+        .origin_info {
+            display:inline-block;
+            color:green;
+            width:200px;
+            height:50px;
+            text-align:center;
+        }
+    </style>
+</head>
+{% for user in users %}
+<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
+    {{ user.userID }} 님의 회원정보입니다
+</div>
+<form method="POST">{% csrf_token %}
+    <div>
+        <span class="origin_info">
+            {{ user.userName }}
+        </span>
+        <input name="name" type="text">
+    </div>
+    <div>
+        <span class="origin_info">
+            {{ user.email }}
+        </span>
+        <input name="email" type="text">
+    </div>
+    <div>
+        <span id="origin_info_phone" class="origin_info"></span>
+            <script>
+                var a = {{ user.phonenumber }};
+                var last = a%10000
+                var middle = (a%100000000 - last)/10000
+                var sum1 = "010-"+middle+"-"+last;
+                document.getElementById("origin_info_phone").innerHTML = sum1;
+            </script>
+        <input name="phone" type="text">
+    </div>
+    {% endfor %}
+    <div>
+        <button type="submit">수정하기</button>
+    </div>
+</form>
+</body>
+</html>
