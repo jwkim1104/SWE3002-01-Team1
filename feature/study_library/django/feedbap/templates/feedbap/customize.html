@@ -1,0 +1,50 @@
+<html>
+<head>
+    <style>
+        .origin_info {
+            display:inline-block;
+            color:green;
+            width:200px;
+            height:50px;
+            text-align:center;
+        }
+    </style>
+</head>
+
+<form method="POST">{% csrf_token %}
+    <div>
+        <span class="origin_info">
+            강아지 이름
+        </span>
+        <input name="data1" type="text">
+    </div>
+    <div>
+        <span class="origin_info">
+            견종
+        </span>
+        <input name="data2" type="text">
+    </div>
+    <div>
+        <span class="origin_info">
+            몸무게
+        </span>
+        <input name="data3" type="text">
+    </div>
+    <div>
+        <span class="origin_info">
+            체형 크기
+        </span>
+        <input name="data4" type="text">
+    </div>
+    <div>
+        <span class="origin_info">
+            활동 정도
+        </span>
+        <input name="data5" type="text">
+    </div>
+    <div>
+        <button type="submit">제출하기</button>
+    </div>
+</form>
+</body>
+</html>
