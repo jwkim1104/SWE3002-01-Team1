@@ -1,0 +1,31 @@
+<html>
+<head>
+    <style>
+        .origin_info {
+            display:inline-block;
+            color:green;
+            width:200px;
+            height:50px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+<form method="POST">{% csrf_token %}
+
+    <input name="data1" type="hidden" value={{ dog_name }}>
+    <input name="data2" type="hidden" value={{ dog_id }}>
+    <input name="data3" type="hidden" value={{ obe }}>
+    <input name="data4" type="hidden" value={{ work_out }}>
+    <div>
+        <span class="origin_info">
+            추가입력
+        </span>
+        <input name="data9" type="text">
+    </div>
+    <div>
+        <button type="submit">제출하기</button>
+    </div>
+</form>
+</body>
+</html>

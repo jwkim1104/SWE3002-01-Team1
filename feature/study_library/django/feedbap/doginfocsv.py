@@ -3,16 +3,16 @@ import csv
 
 # 헤더:값 딕셔너리 형태로 받기
 
-def getData(file='dog_types.csv'):
-    with open(file, 'r', encoding='utf-8') as f:
-        doginfo = []
-        for row in csv.DictReader(f):
-            petID = int(row['id'])
-            breed = row['name']
-            weight = getTuple(row['weight'])
-            life_span = getTuple(row['life_span'])
-            doginfo.append([petID, breed, weight, life_span])
-    return doginfo
+# def getData(file='dog_types.csv'):
+#     with open(file, 'r', encoding='utf-8') as f:
+#         doginfo = []
+#         for row in csv.DictReader(f):
+#             petID = int(row['id'])
+#             breed = row['name']
+#             weight = getTuple(row['weight'])
+#             life_span = getTuple(row['life_span'])
+#             doginfo.append([petID, breed, weight, life_span])
+#     return doginfo
 
 
 # Starts, Up, From과 같이 단어들 처리하기
@@ -20,7 +20,22 @@ def getData(file='dog_types.csv'):
 # Up이면 (초기시점인 0, 지정 년도 혹은 무게)
 # From-to이면 (최소 지정 년도 혹은 무게, 최대 지정 년도 혹은 무게)
 
-def getTuple(r):
+def getWeightTuple(r):
+    tlist = r.split()
+    if "NULL" not in tlist:
+        t = (tlist[0], tlist[2])
+        if 'Starts' in t:
+            t = (int(tlist[2]) * 0.45, None)
+        elif 'Up' in t:
+            t = (0, int(tlist[2]) * 0.45)
+        elif 'From' in t:
+            t = (round(int(tlist[1]) * 0.45, 1), round(int(tlist[3]) * 0.45), 1)
+        else:
+            t = (round(int(tlist[0]) * 0.45, 1), round(int(tlist[2]) * 0.45), 1)
+        return t
+
+
+def getLifeTuple(r):
     tlist = r.split()
     if "NULL" not in tlist:
         t = (tlist[0], tlist[2])
@@ -46,8 +61,11 @@ def getAnalysis(doginfo, block):
     averageWeight = ((int)(doginfo[petID - 1][2][0]) + (int)(doginfo[petID - 1][2][1])) / 2
     deviation = doginfo[petID - 1][2][1] - averageWeight
     subVal = abs(block[2] - averageWeight)
+    bit = 0 ####
     if subVal > deviation * 1.3:
         print("The value of weight is excessed our expectation.")
+        error1 = "The value of weight is excessed our expectation."
+        bit = 1 ####
 
     obesityPoint = block[3]
 
@@ -62,25 +80,26 @@ def getAnalysis(doginfo, block):
 
     if obesityPoint >= 4:
         print("pig")
-        test_list.append("돼지")   #######
+        test_list.append("pig")   #######
     elif obesityPoint >= 2:
         print("normal")
-        test_list.append("정상")  #######
+        test_list.append("normal")  #######
     else:
         print("bones")
-        test_list.append("뼈다구")  #######
+        test_list.append("bones")  #######
 
 
     if block[4] == 2:
         print("too much")
-        test_list.append("운동량 많은편")  #######
+        test_list.append("too much")  #######
     elif block[4] == 1:
         print("normal")
-        test_list.append("정상")  #######
+        test_list.append("normal")  #######
     else:
         print("work out!!")
-        test_list.append("운동좀 시켜요")  #######
-
+        test_list.append("work out")  #######
+    if bit == 1:
+        test_list.append(error1)
     # return petID
     return test_list
 

@@ -10,7 +10,6 @@
         }
     </style>
 </head>
-
 <form method="POST">{% csrf_token %}
     <div>
         <span class="origin_info">
@@ -22,25 +21,29 @@
         <span class="origin_info">
             견종
         </span>
-        <input name="data2" type="text">
+        <select name="data2">
+            {% for item in breeds %}
+            <option> {{ item.name }} </option>>
+            {% endfor %}
+        </select>
     </div>
     <div>
         <span class="origin_info">
             몸무게
         </span>
-        <input name="data3" type="text">
+        <input name="data3" type="number" min="1" max="100"> kg
     </div>
     <div>
         <span class="origin_info">
-            체형 크기
+            비만도
         </span>
-        <input name="data4" type="text">
+        체형작음 <input name="data4" type="range" min="1" max="5"> 체형큼
     </div>
     <div>
         <span class="origin_info">
             활동 정도
         </span>
-        <input name="data5" type="text">
+        활동적음 <input name="data5" type="range" min="1" max="5"> 매우활발
     </div>
     <div>
         <button type="submit">제출하기</button>
