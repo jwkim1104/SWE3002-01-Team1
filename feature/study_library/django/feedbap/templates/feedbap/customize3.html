@@ -1,36 +1,106 @@
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".type").hide();
+    $(".result").hide();
+    $(".type").fadeIn(600);
+    $(".result").fadeIn(1000);
+    });
+</script>
     <style>
-
+        .type {
+            height:80px;
+            text-align:center;
+            display:table-cell;
+            width:200px;
+            vertical-align:middle;
+            background-color:wheat;
+            border:2px solid white;
+        }
+        .result {
+            height:80px;
+            text-align:center;
+            display:table-cell;
+            width:200px;
+            vertical-align:middle;
+            background-color:beige;
+            border:2px solid white;
+        }
     </style>
 </head>
 <body>
-<h1>{{ dog_name }} 의 customization 결과입니다</h1>
+<h1>{{ pet_id }} 의 customization 결과입니다</h1>
+{% load static %}
+<a href="index"><img src="{% static 'feedbap/logo.png' %}" height="70" width="200" style="margin-left:205px"/></a>
 <br/>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
-강아지 타입
+<br/>
+<div class="type">
+강아지 아이디
 </div>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
+<div class="type">
+중성화여부
+</div>
+<div class="type">
+나이
+</div>
+<br/>
+<div class="result">
+{{ pet_id }}
+</div>
+<div class="result">
+{{ neut }}
+</div>
+<div class="result">
+{{ age }}
+</div>
+<br/>
+<div class="type">
+특이사항
+</div>
+<div class="type">
+활동성
+</div>
+<div class="type">
+활동 칼로리
+</div>
+<br/>
+<div class="result">
+{{ specifi }}
+</div>
+<div class="result">
+{{ activity }}
+</div>
+<div class="result">
+{{ activity_cal }}
+</div>
+<br/>
+<div class="type">
 비만도
 </div>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
-활동량
+<div class="type">
+크기
 </div>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
-추가입력
-</div>
+<div class="type">
+해당 영양성분 코드</div>
 <br/>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
-{{ dog_id }}
-</div>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
+<div class="result">
 {{ obe }}
 </div>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
-{{ work_out }}
+<div class="result">
+{{ size }}
 </div>
-<div style="height:80px;text-align:center;display:table-cell;width:800px;vertical-align:middle;">
-{{ default }}
+<div class="result">
+{{ ingredient_set_number }}
+</div>
+<div>
+    <script type="text/javascript">
+    if ({{ is_weight_error }} == 1) {
+        document.write("<div style='color:red;'>The value of weight is OVER our expectation.</div>");
+        document.write("<div style='color:red;'>YOU should ENTER right WEIGHT.</div>");
+    }
+    </script>
 </div>
 </body>
 </html>

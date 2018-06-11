@@ -3,28 +3,77 @@
     <style>
         .origin_info {
             display:inline-block;
-            color:green;
-            width:200px;
-            height:50px;
+            width:400px;
+            height:70px;
             text-align:center;
         }
     </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".block_1").hide();
+    $(".block_2").hide();
+    $(".block_3").hide();
+    $(".block_4").hide();
+    $(".block_5").hide();
+    $(".block_1").fadeIn(200);
+    $(".block_2").fadeIn(600);
+    $(".block_3").fadeIn(1000);
+    $(".block_4").fadeIn(1200);
+    $(".block_5").fadeIn(1400);
+    });
+</script>
+    <script type="text/javascript">
+function val_basic() {
+var obj = document.form_main;
+if(obj.weight.value == '' || obj.gender.value == '' || obj.neut.value == '') {
+    alert('항목을 모두 입력해 주세요');
+    return false;
+}
+}
+</script>
 </head>
 <body>
-<form method="POST">{% csrf_token %}
+{% load static %}
+<a href="index"><img src="{% static 'feedbap/logo.png' %}" height="70" width="200" style="margin-left:250px"/></a>
+<br/>
+<br/>
 
-    <input name="data1" type="hidden" value={{ dog_name }}>
-    <input name="data2" type="hidden" value={{ dog_id }}>
-    <input name="data3" type="hidden" value={{ obe }}>
-    <input name="data4" type="hidden" value={{ work_out }}>
-    <div>
+<br/>
+<form method="POST" action="customize2_2" name="form_main" onsubmit="return val_basic()">{% csrf_token %}
+
+    <input name="pet_id" type="hidden" value={{ pet_id }}>
+    <input name="age" type="hidden" value={{ age }}>
+    <input name="breed_id" type="hidden" value={{ breed_id }}>
+    <div class="block_1">
         <span class="origin_info">
-            추가입력
+            몸무게
         </span>
-        <input name="data9" type="text">
+        <input name="weight" type="number" step="0.01" min="1" max="100"> kg
     </div>
-    <div>
-        <button type="submit">제출하기</button>
+    <div class="block_2">
+        <span class="origin_info">
+            성별
+        </span>
+        <input name="gender" type="radio" value="1"> 남자아이
+        <input name="gender" type="radio" value="0" style="margin-left:30px"> 여자아이
+    </div>
+    <div class="block_3">
+        <span class="origin_info">
+            중성화 여부
+        </span>
+        <input name="neut" type="radio" value="1"> YES
+        <input name="neut" type="radio" value="0" style="margin-left:60px"> NO
+    </div>
+    <div class="block_4">
+        <span class="origin_info">
+            중성화 날짜
+        </span>
+        <input name="neut_date" type="date" value="1900-01-01">
+    </div>
+    <div class="block_5">
+        <button type="submit" style="background-color:wheat;margin-left:250px;width:80px;height:50px;font-size:15pxcolor:Peru;">Next >></button>
+        <span style="margin-left:50px;color:Tan;">60%완성</span>
     </div>
 </form>
 </body>

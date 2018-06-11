@@ -1,0 +1,82 @@
+<html>
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".block_1").hide();
+    $(".block_2").hide();
+    $(".block_3").hide();
+    $(".block_4").hide();
+    $(".block_5").hide();
+    $(".block_1").fadeIn(200);
+    $(".block_2").fadeIn(600);
+    $(".block_3").fadeIn(1000);
+    $(".block_4").fadeIn(1200);
+    $(".block_5").fadeIn(1400);
+    });
+</script>
+    <style>
+        .origin_info {
+            display:inline-block;
+            width:400px;
+            height:70px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+{% load static %}
+<a href="index"><img src="{% static 'feedbap/logo.png' %}" height="70" width="200" style="margin-left:250px"/></a>
+<br/>
+<br/>
+<br/>
+<form method="POST" action="customize3">{% csrf_token %}
+
+    <input name="pet_id" type="hidden" value={{ pet_id }}>
+    <input name="age" type="hidden" value={{ age }}>
+    <input name="breed_id" type="hidden" value={{ breed_id }}>
+    <input name="weight" type="hidden" value={{ weight }}>
+    <input name="gender" type="hidden" value={{ gender }}>
+    <input name="neut" type="hidden" value={{ neut }}>
+    <input name="neut_date" type="hidden" value={{ neut_data }}>
+    <br/>
+    <div class="block_1">
+        <span class="origin_info">
+            비만도
+         </span>
+        체형작음 <input name="obesity" type="range" min="1" max="5"> 체형큼
+    </div>
+    <div class="block_2">
+        <span class="origin_info">
+            활동 정도
+        </span>
+        활동적음 <input name="activity" type="range" min="1" max="5"> 매우활발
+    </div>
+    <div class="block_3">
+        <span class="origin_info">
+            특이사항
+        </span>
+        <select name="hi">
+            <option value="0"> 없음 </option>
+            <option value="pregnant"> 임신중 </option>
+            <option value="diabetes"> 당뇨 </option>
+        </select>
+    </div>
+    <div class="block_4">
+        <span class="origin_info">
+            선호입맛
+        </span>
+        <select name="taste">
+            <option value="None"> 없음 </option>
+            <option value="chicken"> 닭고기 </option>
+            <option value="salmon"> 연어 </option>
+            <option value="beefs"> 소고기 </option>
+        </select>
+    </div>
+    <div class="block_5">
+        <button type="submit" style="background-color:wheat;margin-left:250px;width:80px;height:50px;font-size:15pxcolor:Peru;">Show</button>
+        <span style="margin-left:20px;color:Tan;"><< 결과보기</span>
+    </div>
+</form>
+</body>
+</html>

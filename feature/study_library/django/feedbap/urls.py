@@ -6,7 +6,8 @@ urlpatterns = [
     url(r'^index$', views.index_page, name='index_page'),
     url(r'^customize$', views.customize, name='customize'),
     url(r'^customize2$', views.customize2, name='customize2'),
-    url(r'^customize3$', views.customize2, name='customize3'),
+    url(r'^customize2_2$', views.customize2_2, name='customize2_2'),
+    url(r'^customize3$', views.customize3, name='customize3'),
     url(r'^error$', views.error, name='error'),
 
 ]
