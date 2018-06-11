@@ -1,0 +1,83 @@
+package book.ch9;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class fileDb {
+	private RandomAccessFile raFile;
+	private int recordCount;
+	private int recordLength = 42;
+	private int recordOffset = 4;
+	
+	public fileDb() {
+		try {
+			raFile = new RandomAccessFile("user.dat", "rw");
+			if (raFile.length() == 0) {
+				recordCount = -1;
+			}
+			else {
+				recordCount = raFile.readInt();
+			}
+		}
+		catch (IOException e){
+			System.out.println(e);;
+		}
+	}
+	
+	public int getIndex() {
+		return recordCount;
+	}
+	
+	public void remove(int i) {
+		recordCount = i;
+	}
+	
+	public void add(String id, String pass1) {
+		writeInfo(id, pass1, ++recordCount);
+	}
+	
+	public void writeInfo(String id, String pass1, int index) {
+		int len = 0;
+		
+		try {
+			raFile.seek(index * recordLength + recordOffset);
+			
+			len = id.length();
+			for(int i=0; i<10; i++) {
+				raFile.writeChar((i < len ? id.charAt(i) : ' '));
+			}
+			
+			len = pass1.length();
+			for (int i=0; i<10; i++) {
+				raFile.writeChar((i < len ? pass1.charAt(i) : ' '));
+			}
+			raFile.seek(0);
+			raFile.writeInt(recordCount);
+		}
+		catch (IOException ioe) {
+			System.out.println(ioe);
+		}
+	}
+	
+	public Record readInfo (int index) {
+		String id = "", pass1 = "";
+		int num = -1;
+		
+		try {
+			raFile.seek(index * recordLength + recordOffset);
+			
+			for (int i=0; i<10; i++) {
+				id += raFile.readChar();
+			}
+			
+			for (int i=0; i<10; i++) {
+				pass1 += raFile.readChar();
+			}
+		}
+		catch (IOException ioe){
+			System.out.println("IOException during read file..");
+		}
+		return (new Record(id, pass1));
+	}
+}
+

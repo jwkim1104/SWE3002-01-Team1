@@ -1,0 +1,14 @@
+package book.ch9;
+
+public class numberCheck {
+	
+	public static boolean number(String temp) {
+		int lenTemp = temp.length();
+		
+		for(int i=0; i<lenTemp; i++) {
+			char c = temp.charAt(i);
+			if(!('0' <= c && c <= '9')) return false;
+		}
+		return true;
+	}
+}

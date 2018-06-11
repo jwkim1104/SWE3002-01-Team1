@@ -1,0 +1,137 @@
+@CHARSET "UTF-8";
+
+@font-face {
+	font-family: KoPubBatangBold;
+	src: url(fonts/KoPubBatangBold.woff) format("woff");
+}
+
+@font-face {
+	font-family: KoPubBatangLight;
+	src: url(fonts/KoPubBatangLight.woff);
+}
+
+@font-face {
+	font-family: KoPubBatangMedium;
+	src: url(fonts/KoPubBatangMedium.woff) format("woff");
+}
+
+@font-face {
+	font-family: KoPubDotumBold;
+	src: url(fonts/KoPubDotumBold.woff);
+}
+
+@font-face {
+	font-family: KoPubDotumMedium;
+	src: url(fonts/KoPubDotumMedium.woff);
+}
+
+@font-face {
+	font-family: KoPubDotumLight;
+	src: url(fonts/KoPubDotumLight.woff);
+}
+
+@font-face {
+	font-family: oldphoto4;
+	src: url(fonts/oldphoto4.woff);
+}
+
+@font-face {
+	font-family: titleGothic;
+	src: url(fonts/titleGothic.woff);
+}
+
+@font-face {
+	font-family: Ssangmun;
+	src: url(fonts/Typo_SsangmunDongStencil.woff);	
+}
+
+nav ul {
+	font-family: Ssangmun;
+	font-size: 20px;
+}
+
+body {
+	font-family: KoPubBatangMedium;
+
+}
+
+body a {
+	font-size: 18px;
+	text-decoration: none;
+	color: #7B3C15;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #AE5E1A;
+}
+
+nav a{
+  	text-decoration: none;
+	color: #D68642;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #F0B469;
+}
+
+
+
+/* .vintage */
+.vintage {
+  background-color: #c47135;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: KoPubBatangMedium;
+  font-size: 1em;
+  font-size: 22px;
+  line-height: 1em;
+  margin: 15px 40px;
+  outline: none;
+  padding: 12px 40px 10px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.vintage:before,
+.vintage:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.vintage:before {
+  border-color: #c47135;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  right: -5px;
+  top: -5px;
+}
+.vintage:after {
+  border-bottom-width: 2px;
+  border-color: #c47135;
+  border-left-width: 2px;
+  bottom: -5px;
+  left: -5px;
+}
+.vintage:hover,
+.vintage.hover {
+  background-color: #c47135;
+}
+.vintage:hover:before,
+.vintage.hover:before,
+.vintage:hover:after,
+.vintage.hover:after {
+  height: 100%;
+  width: 100%;
+}
+
+

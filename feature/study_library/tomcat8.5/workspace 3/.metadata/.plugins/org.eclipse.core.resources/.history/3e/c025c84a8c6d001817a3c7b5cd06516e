@@ -1,0 +1,19 @@
+package book.ch9;
+
+public class Record {
+	private String id;
+	private String pass;
+	
+	public Record(String temp1, String temp2) {
+		id = temp1;
+		pass = temp2;
+	}
+	
+	public String getId() {
+		return (id);
+	}
+	
+	public String getPass() {
+		return (pass);
+	}
+}

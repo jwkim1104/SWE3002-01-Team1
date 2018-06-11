@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>list</title>
+
+</head>
+<body>
+<%--
+<%
+	Class.forName("com.mysql.jdbc.Driver");
+	String url="jdbc:mysql://localhost:3306/1995theater";
+	String id="root";
+	String pw="1234";
+	int total=0;
+	
+	try{
+		Connection conn = DriverManager.getConnection(url,id,pw);
+		Statement stmt = conn.createStatement();
+		String sqlCount="SELECT COUNT(*) FROM category";
+		ResultSet rs = stmt.executeQuery(sqlCount);
+		if(rs.next()){
+			total=rs.getInt(1);
+		}
+		rs.close();
+		out.print("<center>현재 상영 영화 : " + total + "개</center>");
+		
+		String sqlList = "SELECT category_id, title,poster from category order by category_id";
+		rs = stmt.executeQuery(sqlList);
+%>
+<%
+		if(total==0) {
+%>
+	<table>
+		<tr align="center" bgcolor="white" height="30">
+			<td colspan="6">현재 상영중인 영화가 없습니다.</td>
+		</tr>
+	</table>
+<%
+		}
+		else {
+			while(rs.next()) {
+				int idx = rs.getInt(1);
+				String title = rs.getString(2);
+				String postersrc = rs.getString(3);
+%>
+ --%>
+
+<%--
+
+	<div style="float:left">
+	<table style="padding : 0 0 0 0" width=200>
+		<tr height="25" align="center">
+			<td>&nbsp;</td>
+			<td align="left"><img src=<%=postersrc %> width=200 height=300></td>
+		</tr>
+		<tr height="25" align=center">
+			<td>&nbsp;</td>
+			<td align="center"> <a href="view.jsp?idx=<%=idx%>"><%=title %></td>
+		</tr>
+		<tr height="1" bgcolor="white">
+			<td colspan="6"></td>
+		</tr>
+	</table>
+	</div>
+	
+ --%>
+ <center><img src="../image/home.jpg">	</center>
+ <%--
+ %
+			}
+		}
+		rs.close();
+		stmt.close();
+		conn.close();
+	} catch(SQLException se) {
+		se.printStackTrace();
+		out.println("DB Connection Error!");
+ 	}
+%>
+	<div style = "clear: both">
+	
+	<center>
+	<table width="20%" cellpadding="0" cellspacint="0" border="0">
+		<tr align="center">
+			<td>&nbsp;</td>
+			<td colspan="2"><a href=../reservation/20171215_movie_timetable.jsp>예매하기</a></td>
+		</tr>
+	</table>
+	</center>
+	</div>
+  --%>	
+<
+</body>
+</html>
